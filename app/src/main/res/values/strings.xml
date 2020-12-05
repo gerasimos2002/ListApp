@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ListApp</string>
+    <string name="ButtonAdderText">Add</string>
+    <string name="EditTextHint">Add your item...</string>
+    <string name="ButtonNameAdder">Add</string>
+    <string name="buttonVerbal">Verbal</string>
+    <string name="buttonSend">Send</string>
+    <string name="buttonClear">Clear</string>
+</resources>
