@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     View updateview;// above oncreate method
+    ArrayList<Boolean> checked = new ArrayList<> ();
 
 
 
@@ -53,56 +55,59 @@ public class MainActivity extends AppCompatActivity {
         buttonAdder = findViewById(R.id.buttonAdder);
         myList = findViewById(R.id.MyList);
         items = new ArrayList<>();
-        myList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        myList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
 
 
         itemsAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_multiple_choice , items);
         restoreBlood();
+
+
         myList.setAdapter(itemsAdapter);
 
-        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        /*myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int colorRes = 1140303;
                 int pos = position;
 
-               /* if (updateview != null)
-                    updateview.setBackgroundColor(Color.TRANSPARENT);
-                updateview = view;
+               // if (updateview != null)
+                 //   updateview.setBackgroundColor(Color.TRANSPARENT);
+                //updateview = view;
 
-                view.setBackgroundColor( Color.CYAN);*/
-                SparseBooleanArray sparseBooleanArray = myList.getCheckedItemPositions ();
+               // view.setBackgroundColor( Color.CYAN);
+               // SparseBooleanArray sparseBooleanArray = myList.getCheckedItemPositions ();
 
-                int count = myList.getCount ();
+               // int count = myList.getCount ();
                // view.setSelected ( true );
-                for (int i = count - 1; i >= 0; i--) {
-                    if (sparseBooleanArray.get ( i )) {
+                //for (int i = count - 1; i >= 0; i--) {
+                  //  if (sparseBooleanArray.get ( i )) {
 
 
                         //if (myList.getChildAt ( i ).getBackground ()  ==  Drawable.getColor (  )     //myList.getChildAt ( i ).getBackground (RED))
                         //for (int j = 0; j < myList.getAdapter ().getCount (); j++) {
-                        {
-                            myList.getChildAt ( i ).setBackgroundColor ( RED );
-                        }
+                    //    {
+                         //   myList.getChildAt ( i ).setBackgroundColor ( RED );
+                       // }
                         //}
                        // parent.getChildAt ( position ).setBackgroundColor ( Color.RED );
 
 
-                    }
-                    else
-                    {
-                        parent.getChildAt ( i ).setBackgroundColor ( TRANSPARENT );
+                   // }
+                   // else
+                   // {
+                     //   parent.getChildAt ( i ).setBackgroundColor ( TRANSPARENT );
 
 
-                    }
-                }
+                    //}
+                //}
 
 
                 // sparseBooleanArray.clear ();
-                itemsAdapter.notifyDataSetChanged ();
+               // itemsAdapter.notifyDataSetChanged ();
             }
-        });
+        });*/
 
 
         myList.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -231,9 +236,9 @@ public class MainActivity extends AppCompatActivity {
                 int tmpCount = preferences.getInt ( "count", 0 );
                 for (int i = 0; i < tmpCount; i++) {
 
-                  items.remove (preferences.getString("blood"+i, ""));
+                    items.remove ( preferences.getString ( "blood" + i, "" ) );
                     editor.apply ();
-                   items.clear();
+                    items.clear ();
 
                 }
                 editor.clear();
